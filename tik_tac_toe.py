@@ -19,7 +19,7 @@ class Tik_tac_toe():
             move = self.get_input(error)
             error = self.check_input(move)
         else:
-            self.board[self.row][self.column] = self.current_token
+            self.board[move[0]][move[1]] = self.current_token
             self.move_counter += 1
             self.check_winner(move)
 
@@ -36,17 +36,17 @@ class Tik_tac_toe():
             Returns False if there is no Error otherwise it returns what error it found.
         '''
         legit_moves = [0, 1, 2]
-        if len(move) == 2:
-            if move[0] in legit_moves and move[1] in legit_moves:
-                self.row, self.column = move[0], move[1]
-                if self.board[self.row][self.column] == " ":
-                    return False
-                else:
-                    return "spot taken"
-            else:
-                return "illegal move"
-        else:
+        
+        if len(move) != 2: 
             return "illegal move"
+        if move[0] not in legit_moves or move[1] not in legit_moves:
+            return "illegal move"
+    
+        if self.board[move[0]][move[1]] != " ":
+                return "spot taken"
+        return False
+ 
+           
 
     def get_input(self, reason):
         '''
@@ -125,8 +125,8 @@ class Tik_tac_toe():
                 self.check_column(move[1])
                 self.check_corner_left_to_right()
                 self.check_corner_right_to_left()
-        if self.move_counter == 9:
-            self.winner = "draw"
+            elif self.move_counter == 9:
+                self.winner = "draw"
 
     def check_row(self, row):
         '''
