@@ -1,8 +1,6 @@
 class Tik_tac_toe():
     def __init__(self) -> None:
         self.board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
-        self.row = int
-        self.column = int
         self.current_token = "X"
         self.winner = ""
         self.move_counter = 0
